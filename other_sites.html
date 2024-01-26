@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Other Websites and Projects</title>
+    <link rel="stylesheet" href=""> <!-- Include your stylesheets -->
+    <style>
+        /* CSS for continuously moving text */
+        body {
+            font-size: 25px;
+            background: linear-gradient(18deg,#c4e4c6,#fff,#b9c8d3,#dce6c3,#d6bbd6,#e0cdcd,
+            #b9c8d3,#c4e4c6,#d6bbd6,#dce6c3,#e0cdcd,#fff,
+            #b9c8d3,#c4e4c6,#d6bbd6,#dce6c3,#e0cdcd,#fff,#b9c8d3,#c4e4c6,#d6bbd6,#dce6c3,#e0cdcd,#fff
+            ,#b9c8d3,#c4e4c6,#d6bbd6,#dce6c3,#e0cdcd,#fff,#b9c8d3,#c4e4c6,#d6bbd6,#dce6c3,#e0cdcd,#fff);
+        }
+
+        h1 {
+            font-size: 27px;
+        }
+
+        @keyframes moveText {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .moving-text-container {
+            overflow: hidden;
+        }
+
+        .moving-text {
+            font-size: 24px;
+            white-space: nowrap;
+            display: inline-block;
+            animation: moveText 10s linear infinite;
+        }
+
+        /* CSS for digital clock */
+        .digital-clock {
+            font-size: 44px;
+            margin-top: 20px;
+            text-align: center;
+
+        }
+
+        /* CSS for blinking buttons */
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .blinking-button {
+            text-align: center;
+            align-items: center;
+            display: inline-block;
+            margin-right: 2px;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            animation: blink 1s linear infinite;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Digital clock -->
+<div class="digital-clock" id="digitalClock"></div>
+
+<button>
+<h1>My Other Websites and Projects</h1>
+</button>
+
+<!-- Continuously moving text -->
+<div class="moving-text-container">
+    <div class="moving-text">
+        Welcome to EyeconTECH World
+    </div>
+</div>
+
+<!-- Blinking buttons -->
+<button class="blinking-button">EyeconTECH</button>
+<button class="blinking-button">Creations</button>
+
+
+
+<p>
+   <b> Explore some of the other websites and projects I've had the privilege to work on: </b>
+</p>
+
+<ul>
+    <li><b><a href="https://eyecon14.github.io/EyeconTECH/home.html" target="_blank">Student-Based Quiz</a></b></li><br>
+    <li><b><a href="https://eyecon14.github.io/eye-web.com/" target="_blank">Eye-Code Learning</a></li><br>
+    <li><b><a href="https://eyecon14.github.io/eyecon-website/templates/dashboard.html" target="_blank">www.Trial.com</a></b></li>
+    <!-- Add more project links as needed -->
+</ul>
+
+
+<p>
+    Each of these projects represents a unique aspect of my skills and interests. Feel free to explore and get in touch if you have any questions or feedback.
+</p>
+
+<!-- ... Other sections ... -->
+
+<!-- Continuously moving text -->
+<div class="moving-text-container">
+    <div class="moving-text">
+        Benneth wishes you a great day
+    </div>
+</div>
+
+<button class="blinking-button">Thank You Very Much</button>
+
+<script>
+    // JavaScript for continuously moving text
+    function moveTextAnimation() {
+        const movingText = document.querySelector('.moving-text');
+        const movingTextContainer = document.querySelector('.moving-text-container');
+        const textWidth = movingText.offsetWidth;
+        const containerWidth = movingTextContainer.offsetWidth;
+
+        if (textWidth > containerWidth) {
+            movingTextContainer.style.animation = 'none';
+            void movingTextContainer.offsetWidth; // Trigger reflow
+            movingTextContainer.style.animation = 'moveText 10s linear infinite';
+        }
+    }
+
+    moveTextAnimation();
+
+    // JavaScript for digital clock
+    function updateDigitalClock() {
+        const now = new Date();
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+        const seconds = now.getSeconds();
+
+        const digitalClock = document.getElementById('digitalClock');
+        digitalClock.textContent = `${hours}:${minutes < 10 ? '0' : ''}${minutes} ${hours >= 12 ? 'pm' : 'am'}`;
+    }
+
+    setInterval(updateDigitalClock, 1000);
+</script>
+
+</body>
+</html>
+
+
+
+

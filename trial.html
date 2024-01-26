@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Church Chatbot</title>
+    <style>
+        #chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: none;
+            transition: height 0.3s ease;
+        }
+
+        #toggle-button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            box-sizing: border-box;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="chatbot-container">
+    <button id="toggle-button" onclick="toggleChatbotVisibility()">Toggle Chatbot</button>
+</div>
+
+<script>
+    let isChatbotVisible = true;
+
+    function toggleChatbotVisibility() {
+        const chatbotContainer = document.getElementById('chatbot-container');
+
+        if (isChatbotVisible) {
+            chatbotContainer.style.display = 'none';
+        } else {
+            chatbotContainer.style.display = 'block';
+        }
+
+        isChatbotVisible = !isChatbotVisible;
+    }
+</script>
+
+</body>
+</html>

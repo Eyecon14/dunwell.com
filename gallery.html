@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dunwell MYF Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(2deg,#e9caca,#b2a1df,#a7dbb9,#cee2a9,#e0abab,hsl(202, 45%, 76%),#e0c386);
+        }
+
+        header {
+            color: #4313c7;
+            text-align: center;
+            padding: 10px;
+            border: 5rem;
+            margin: 10px;
+            border-radius: 50px;
+            background-color: #d6cfe9;
+        }
+
+        @keyframes moveText {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .moving-text-container {
+            overflow: hidden;
+        }
+
+        .moving-text {
+            font-size: 24px;
+            white-space: nowrap;
+            display: inline-block;
+            animation: moveText 10s linear infinite;
+        }
+
+        section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .member {
+            margin: 10px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+            bottom: 0;
+        }
+
+                /* CSS for digital clock */
+                .digital-clock {
+            font-size: 44px;
+            margin-top: 20px;
+            text-align: center;
+
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Dunwell MYF Gallery</h1>
+    </header>
+
+    <!-- Digital clock -->
+<div class="digital-clock" id="digitalClock"></div>
+
+    <!-- Continuously moving text -->
+<div class="moving-text-container">
+    <div class="moving-text">
+        Welcome to Dunwell Methodist Youth Fellowship...
+    </div>
+</div>
+
+    <section>
+        <img src="dun/dennis.jpg" alt="">Bro. Gyamfi Dennis <br> (Chairman)
+    </section>
+
+    <section>
+        <img src="dun/herrty (1).jpg" alt="">Sis. Hertty Agyei <br> (Vice Chairman)
+    </section>
+
+    <section>
+        <img src="dun/effah.jpg" alt="">Rev. Effah Daniel <br> (Secretary)
+    </section>
+    
+    <section>
+        <img src="dun/botwe.jpg" alt="">Bro. Botwe Emmanuel <br> (Immediate Past Secretary)  
+    </section>
+
+    <section>
+        <img src="dun/benneth.jpg" alt="">Bro. Amponsah Benneth <br> (Immediate Past Financial Secretary)
+    </section>
+
+    <section>
+        <img src="dun/bismark (2).jpg" alt="">Bro. Bismark <br> (Immediate Past Organizer)
+    </section>
+
+    <section>
+        <img src="dun/aboagye (2).jpg" alt="">Bro. Aboagye Osei <br> (Immediate Past Poter)
+    </section>
+
+    <section>
+        <img src="dun/twumasi.jpg" alt="">Bro. Twumasi Kwaku<br> (Past Executive)
+    </section>
+
+    <section>
+        <img src="dun/chu1.jpg" alt="">The Backbone of the church <br> (Members)
+        
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Youth Members Gallery</p>
+    </footer>
+
+    <script>
+        // JavaScript for continuously moving text
+        function moveTextAnimation() {
+            const movingText = document.querySelector('.moving-text');
+            const movingTextContainer = document.querySelector('.moving-text-container');
+            const textWidth = movingText.offsetWidth;
+            const containerWidth = movingTextContainer.offsetWidth;
+    
+            if (textWidth > containerWidth) {
+                movingTextContainer.style.animation = 'none';
+                void movingTextContainer.offsetWidth; // Trigger reflow
+                movingTextContainer.style.animation = 'moveText -10s linear infinite';
+            }
+        }
+    
+        moveTextAnimation();
+    
+        // JavaScript for digital clock
+        function updateDigitalClock() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+    
+            const digitalClock = document.getElementById('digitalClock');
+            digitalClock.textContent = `${hours}:${minutes < 10 ? '0' : ''}${minutes} ${hours >= 12 ? 'pm' : 'am'}`;
+        }
+    
+        setInterval(updateDigitalClock, 1000);
+    </script>
+
+</body>
+</html>
