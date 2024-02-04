@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdown Menu</title>
+    <style>
+        /* Style for the dropdown menu */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Style for the dropdown content */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        /* Style for the dropdown items */
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        /* Change color on hover */
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Show the dropdown content when hovering over the dropdown */
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="dropdown">
+    <button class="dropbtn">Dropdown</button>
+    <div class="dropdown-content">
+        <a href="settings.html">Settings</a>
+        <a href="contact.html">Contact</a>
+        <a href="support.html">Support Us</a>
+        <a href="other_sites.html">Other Sites</a>
+    </div>
+</div>
+
+<script>
+    // settings.js
+
+function toggleDarkMode() {
+    const body = document.body;
+    body.classList.toggle('dark-mode');
+    // You may also need to toggle other elements on the page depending on your design
+}
+
+// Check user's preference from local storage
+if (localStorage.getItem('darkMode') === 'enabled') {
+    toggleDarkMode();
+}
+
+function toggleLightMode() {
+    const body = document.body;
+    body.classList.remove('dark-mode');
+}
+
+// Add more settings as needed
+// ...
+
+// Function to save user preference
+function saveUserPreference(key, value) {
+    localStorage.setItem(key, value);
+}
+
+</script>
+
+</body>
+</html>
