@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Church Chatbot</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        #chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: none;
+            transition: height 0.3s ease;
+        }
+
+        #chatbot-header {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 10px 10px 0 0;
+            cursor: pointer;
+        }
+
+        #chatbot-content {
+            padding: 10px;
+            overflow-y: auto;
+            max-height: 300px;
+        }
+
+        .message-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            margin-bottom: 10px;
+        }
+
+        .user-question {
+            background-color: #3498db;
+            color: #fff;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px 0;
+            max-width: 70%;
+            word-wrap: break-word;
+        }
+
+        .bot-response {
+            background-color: #2ecc71;
+            color: #fff;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px 0;
+            max-width: 70%;
+            word-wrap: break-word;
+        }
+
+        .loading-dots {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            position: relative;
+        }
+
+        .loading-dots::before,
+        .loading-dots::after,
+        .loading-dots div {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background-color: #3498db;
+            border-radius: 50%;
+            position: absolute;
+            animation: loading-animation 1.5s infinite ease-in-out;
+        }
+
+        .loading-dots::before, .loading-dots::after {
+            top: 0;
+        }
+
+        .loading-dots div {
+            top: 8px;
+        }
+
+        @keyframes loading-animation {
+            0%, 100% {
+                transform: scale(0);
+            }
+            50% {
+                transform: scale(1);
+            }
+        }
+
+        #chat-input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            margin: 0;
+            box-sizing: border-box;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        #send-button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            box-sizing: border-box;
+            margin-top: 10px;
+        }
+
+        .timestamp {
+            font-size: 12px;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        #toggle-button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            box-sizing: border-box;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="chatbot-container">
+    <div id="chatbot-header" onclick="toggleChatbot()">Church Chatbot</div>
+    <div id="chatbot-content"></div>
+    <input type="text" id="chat-input" placeholder="Type your message...">
+    <button id="send-button" onclick="sendMessage()">Send</button>
+    <button id="toggle-button" onclick="toggleChatbotVisibility()">Toggle Chatbot</button>
+</div>
+
+<script>
+    let isChatbotVisible = true;
+
+    function toggleChatbot() {
+        const chatbotContent = document.getElementById('chatbot-content');
+        const chatbotContainer = document.getElementById('chatbot-container');
+
+        if (isChatbotVisible) {
+            chatbotContent.style.display = 'none';
+            chatbotContainer.style.height = 'auto';
+        } else {
+            chatbotContent.style.display = 'block';
+            chatbotContainer.style.height = 'auto';
+        }
+
+        isChatbotVisible = !isChatbotVisible;
+    }
+
+    function toggleChatbotVisibility() {
+        const chatbotContent = document.getElementById('chatbot-content');
+        const chatbotContainer = document.getElementById('chatbot-container');
+
+        if (isChatbotVisible) {
+            chatbotContent.style.display = 'none';
+            chatbotContainer.style.height = 'auto';
+        } else {
+            chatbotContent.style.display = 'block';
+            chatbotContainer.style.height = 'auto';
+        }
+
+        isChatbotVisible = !isChatbotVisible;
+    }
+
+    function sendMessage() {
+        const chatInput = document.getElementById('chat-input').value;
+        const chatbotContent = document.getElementById('chatbot-content');
+
+        // Clear input field
+        document.getElementById('chat-input').value = '';
+
+        // Display user question
+        const userQuestionContainer = createUserQuestionContainer(chatInput);
+        chatbotContent.appendChild(userQuestionContainer);
+
+        // Show loading dots while simulating bot response delay
+        const loadingDotsContainer = createLoadingDotsContainer();
+        chatbotContent.appendChild(loadingDotsContainer);
+
+        setTimeout(() => {
+            // Simulate bot response
+            const botResponseText = getBotResponse(chatInput);
+            const botResponseContainer = createBotResponseContainer(botResponseText);
+            chatbotContent.appendChild(botResponseContainer);
+
+            // Scroll to the bottom of the chat
+            chatbotContent.scrollTop = chatbotContent.scrollHeight;
+
+            // Remove loading dots
+            chatbotContent.removeChild(loadingDotsContainer);
+        }, 1500);
+    }
+
+    function getBotResponse(question) {
+        // Add your custom logic to generate bot responses based on user questions
+        // This is just a placeholder
+        return `Thank you for asking "${question}". Here is a sample response from the bot.`;
+    }
+
+    function createLoadingDotsContainer() {
+        const loadingDotsContainer = document.createElement('div');
+        loadingDotsContainer.className = 'loading-dots';
+        return loadingDotsContainer;
+    }
+
+    function createUserQuestionContainer(question) {
+        const container = document.createElement('div');
+        container.className = 'message-container';
+
+        const userQuestion = document.createElement('div');
+        userQuestion.className = 'user-question';
+        userQuestion.textContent = question;
+        container.appendChild(userQuestion);
+
+        const timestamp = document.createElement('div');
+        timestamp.className = 'timestamp';
+        timestamp.textContent = getFormattedTimestamp();
+        container.appendChild(timestamp);
+
+        return container;
+    }
+
+    function createBotResponseContainer(response) {
+        const container = document.createElement('div');
+        container.className = 'message-container';
+
+        const botResponse = document.createElement('div');
+        botResponse.className = 'bot-response';
+        botResponse.textContent = response;
+        container.appendChild(botResponse);
+
+        const timestamp = document.createElement('div');
+        timestamp.className = 'timestamp';
+        timestamp.textContent = getFormattedTimestamp();
+        container.appendChild(timestamp);
+
+        return container;
+    }
+
+    function getFormattedTimestamp() {
+        const now = new Date();
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+        const seconds = now.getSeconds();
+        return `${hours}:${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    }
+</script>
+
+</body>
+</html>
